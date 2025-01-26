@@ -16,6 +16,8 @@ function set_key_maps()
 
 	--vim.api.nvim_set_keymap('n', '<leader>c', ':call nerdcommenter#Comment("x", "toggle")<CR>', { noremap = true, silent = true })
 
+
+	vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true })
 	--Escapeでターミナルを抜ける
 	vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true })
 	vim.api.nvim_set_keymap("n", ":", "<cmd>FineCmdline<CR>", { noremap = true })
