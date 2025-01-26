@@ -5,6 +5,7 @@ require("share/plugins/comment")
 require("share/plugins/fine-cmdline")
 require("share/plugins/nvim-tree")
 require("share/plugins/require-plugins")
+require("share/command")
 require("setup")
 
 -- --nopluginが指定されたかどうか
@@ -39,3 +40,4 @@ else
 	main_setup:build()
 	setup_plugins()
 end
+setup_commands()
