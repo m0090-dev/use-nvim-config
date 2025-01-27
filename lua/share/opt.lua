@@ -69,4 +69,7 @@ function set_use_options()
 
 	-- NOTE: You should make sure your terminal supports this
 	vim.o.termguicolors = true
+
+	vim.api.nvim_set_var('loaded_netrw', 1)
+	vim.api.nvim_set_var('loaded_netrwPlugin', 1)
 end
