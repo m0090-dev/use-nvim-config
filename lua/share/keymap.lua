@@ -14,6 +14,7 @@ function set_key_maps()
 	vim.api.nvim_set_keymap("n", "<leader>q", ":BufferClose<CR>", { noremap = true })
 	vim.api.nvim_set_keymap("n", "<leader>x", ":bd!<CR>", { noremap = true, silent = true })
 
+	vim.api.nvim_set_keymap("n", "<leader>f", ":Telescope<CR>", { noremap = true })
 	--vim.api.nvim_set_keymap('n', '<leader>c', ':call nerdcommenter#Comment("x", "toggle")<CR>', { noremap = true, silent = true })
 
 
