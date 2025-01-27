@@ -1,6 +1,7 @@
-
 -- lualineの設定
-function setup_lualine()
+local M = {}
+
+function M.setup_lualine()
   -- 現在の日付と時間を取得するカスタム関数
   local function current_datetime()
     return os.date('%Y-%m-%d %H:%M:%S') -- フォーマット例: 2025-01-27 14:35:20
@@ -48,3 +49,4 @@ function setup_lualine()
   }
 end
 
+return M

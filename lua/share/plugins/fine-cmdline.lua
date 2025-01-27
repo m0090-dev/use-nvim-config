@@ -1,4 +1,5 @@
-function setup_fine_cmdline()
+local M = {}
+function M.setup_fine_cmdline()
 	require("fine-cmdline").setup({
 		cmdline = {
 			enable_keymaps = true,
@@ -47,3 +48,4 @@ function setup_fine_cmdline()
     highlight CursorLine guibg=#333344                      " カーソル行を少し強調
   ]])
 end
+return M

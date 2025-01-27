@@ -1,4 +1,5 @@
-function setup_nvim_tree()
+local M = {}
+function M.setup_nvim_tree()
 	require('nvim-tree').setup {
   sort_by = 'extension',
 
@@ -33,3 +34,4 @@ function setup_nvim_tree()
 vim.api.nvim_create_user_command('Ex', function() vim.cmd.NvimTreeToggle() end, {})
 	require("nvim-tree.api").tree.toggle(false, true)
 end
+return M

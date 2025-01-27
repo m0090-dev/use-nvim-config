@@ -9,15 +9,22 @@ function require_minimum_plugins()
 			"romgrk/barbar.nvim",
 		},
 		{
-			event = "CmdlineEnter",
+			event = "VimEnter",
 			"VonHeikemen/fine-cmdline.nvim",
 			dependencies = {
 				"MunifTanjim/nui.nvim",
 			},
+			config = function()
+				require("share/plugins/fine-cmdline").setup_fine_cmdline()
+			end,
 		},
 		{
 			event = "BufReadPost",
 			"nvim-treesitter/nvim-treesitter",
+			build = ":TSUpdate",
+			config = function()
+				require("share/plugins/nvim-treesitter").setup_nvim_treesitter()
+			end,
 		},
 		{
 			event = "VimEnter",
@@ -25,6 +32,9 @@ function require_minimum_plugins()
 			dependencies = {
 				"nvim-tree/nvim-web-devicons",
 			},
+			config = function()
+				require("share/plugins/nvim-tree").setup_nvim_tree()
+			end,
 		},
 		{
 			event = "BufReadPost",
@@ -32,6 +42,9 @@ function require_minimum_plugins()
 			dependencies = {
 				"nvim-tree/nvim-web-devicons",
 			},
+			config = function()
+				require("share/plugins/lualine/lualine").setup_lualine()
+			end,
 		},
 	}
 end
@@ -41,6 +54,9 @@ function require_plugins()
 	return vim.list_extend(require_minimum_plugins(), {
 		{
 			"numToStr/Comment.nvim",
+			config = function()
+				require("share/plugins/comment").setup_comment()
+			end,
 		},
 		{
 			"rcarriga/nvim-notify",
@@ -48,6 +64,11 @@ function require_plugins()
 		{
 			event = "CmdlineEnter",
 			"vim-scripts/ScrollColors",
+		},
+
+		{
+			"nvim-telescope/telescope.nvim",
+			dependencies = { "nvim-lua/plenary.nvim" },
 		},
 	})
 end
