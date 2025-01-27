@@ -72,4 +72,6 @@ function set_use_options()
 
 	vim.api.nvim_set_var('loaded_netrw', 1)
 	vim.api.nvim_set_var('loaded_netrwPlugin', 1)
+
+	vim.opt.guifont = "GohuFont 11 Nerd Font Mono:h15"  -- setting gui font
 end
