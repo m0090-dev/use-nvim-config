@@ -1,19 +1,4 @@
 function setup_nvim_tree()
-	--[[
-	require("nvim-tree").setup({
- 		respect_buf_cwd = true,
-		sort_by = "case_sensitive",
-		view = {
-			adaptive_size = true,
-		},
-		renderer = {
-			group_empty = true,
-		},
-		filters = {
-			dotfiles = true,
-		},
-	})
-	--]]
 	require('nvim-tree').setup {
   sort_by = 'extension',
 
@@ -45,7 +30,6 @@ function setup_nvim_tree()
 
   on_attach = 'default'
 }
-
 vim.api.nvim_create_user_command('Ex', function() vim.cmd.NvimTreeToggle() end, {})
 	require("nvim-tree.api").tree.toggle(false, true)
 end

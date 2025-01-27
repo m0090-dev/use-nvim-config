@@ -5,6 +5,7 @@ require("share/plugins/comment")
 require("share/plugins/fine-cmdline")
 require("share/plugins/nvim-tree")
 require("share/plugins/require-plugins")
+require("share/plugins/lualine")
 require("share/command")
 require("setup")
 
@@ -23,10 +24,12 @@ function setup_plugins()
 	setup_fine_cmdline()
 	setup_nvim_tree()
 	setup_comment()
+	setup_lualine()
 end
 function setup_minimum_plugins()
 	setup_fine_cmdline()
 	setup_nvim_tree()
+	setup_lualine()
 end
 
 Setup = Setup()
