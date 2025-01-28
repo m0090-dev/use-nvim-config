@@ -54,18 +54,18 @@ function require_minimum_plugins()
 				require("telescope").setup({})
 			end,
 		},
+		{
+			"preservim/nerdcommenter",
+			config = function()
+				require("share/plugins/comment").setup_comment()
+			end,
+		},
 	}
 end
 
 -- 通常設定
 function require_plugins()
 	return vim.list_extend(require_minimum_plugins(), {
-		{
-			"numToStr/Comment.nvim",
-			config = function()
-				require("share/plugins/comment").setup_comment()
-			end,
-		},
 		{
 			"rcarriga/nvim-notify",
 		},

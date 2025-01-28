@@ -22,4 +22,6 @@ function set_key_maps()
 	--Escapeでターミナルを抜ける
 	vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true })
 	vim.api.nvim_set_keymap("n", ":", "<cmd>FineCmdline<CR>", { noremap = true })
+
+	vim.api.nvim_set_keymap("n", "<leader>c", ":call NERDComment('n', 'toggle')<CR>", { noremap = true })
 end
