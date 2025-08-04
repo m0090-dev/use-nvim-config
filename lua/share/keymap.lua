@@ -6,9 +6,16 @@ function set_key_maps()
 	-- Space-S二回で保存する(Unix)
 	vim.api.nvim_set_keymap("n", "<leader>s", ":w ++ff=unix<CR>", { noremap = true })
 	-- Space-tで次のタブに移動
-	vim.api.nvim_set_keymap("n", "<leader>t", ":tabnext<CR>", { noremap = true })
+	--vim.api.nvim_set_keymap("n", "<leader>t", ":tabnext<CR>", { noremap = true })
 	-- Space-Tで前ののタブに移動
-	vim.api.nvim_set_keymap("n", "<leader>T", ":tabprev<CR>", { noremap = true })
+	--vim.api.nvim_set_keymap("n", "<leader>T", ":tabprev<CR>", { noremap = true })
+
+
+	-- Space-t: 次のバッファに移動
+	vim.api.nvim_set_keymap("n", "<leader>t", "<Cmd>BufferNext<CR>", { noremap = true, silent = true })
+
+	-- Space-T: 前のバッファに移動
+	vim.api.nvim_set_keymap("n", "<leader>T", "<Cmd>BufferPrevious<CR>", { noremap = true, silent = true })
 
 	-- Space-qでタブを閉じる
 	vim.api.nvim_set_keymap("n", "<leader>q", ":BufferClose<CR>", { noremap = true })
