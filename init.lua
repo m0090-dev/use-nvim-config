@@ -16,4 +16,4 @@ if has_minimum then
 else
 	main_setup:build()
 end
-setup_commands()
+

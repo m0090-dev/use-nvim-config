@@ -11,6 +11,7 @@ function SetupBuilder()
 		set_default_colorscheme()
 		set_use_options()
 		set_key_maps()
+		set_commands()
 		return self
 	end
 

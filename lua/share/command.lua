@@ -4,7 +4,7 @@ local function convert_backslash_to_slash(path)
   end
   return path:gsub("\\", "/")
 end
-function setup_commands()
+function set_commands()
 
 --print(vim.inspect(vim.loop.os_environ()))
 local user_profile = os.getenv("USERPROFILE") 

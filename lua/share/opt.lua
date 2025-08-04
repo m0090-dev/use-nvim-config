@@ -1,5 +1,5 @@
 function set_use_options()
-	vim.opt.shell = 'powershell.exe' -- windows向け
+	--vim.opt.shell = 'powershell.exe' -- windows向け
 	vim.opt.backup = false -- バックアップファイルを作成しない
 	vim.opt.writebackup = false -- 書き込み中にバックアップを作成しない
 	vim.opt.swapfile = false -- スワップファイルを作成しない

@@ -73,5 +73,76 @@ function require_plugins()
 			event = "CmdlineEnter",
 			"vim-scripts/ScrollColors",
 		},
+
+		{
+			"folke/which-key.nvim",
+			event = "VeryLazy",
+			opts = {
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			},
+			keys = {
+				{
+					"<leader>?",
+					function()
+						require("which-key").show({ global = false })
+					end,
+					desc = "Buffer Local Keymaps (which-key)",
+				},
+			},
+		},
+		{
+			"RaafatTurki/hex.nvim",
+			config = function()
+				require("hex").setup()
+			end,
+		},
+		{
+			"mason-org/mason.nvim",
+			opts = {},
+			config = function()
+				require("mason").setup()
+			end,
+		},
+
+		{
+			"neovim/nvim-lspconfig",
+			config = function()
+				require("mason-lspconfig").setup({
+					ensure_installed = { "lua_ls", "gopls" }, -- 必要なLSPをリストアップ
+					automatic_enable = true, -- デフォルトで自動有効化（省略可）
+				})
+			end,
+		},
+		{
+			"williamboman/mason-lspconfig.nvim",
+		},
+
+		{
+			"hrsh7th/nvim-cmp",
+			dependencies = {
+				"hrsh7th/cmp-nvim-lsp", -- LSPソース
+				"neovim/nvim-lspconfig", -- LSP設定（既に入れてる前提）
+			},
+			config = function()
+				local cmp = require("cmp")
+				cmp.setup({
+
+					mapping = {
+						["<Tab>"] = cmp.mapping.select_next_item(),
+						["<S-Tab>"] = cmp.mapping.select_prev_item(),
+						["<C-n>"] = cmp.mapping.select_next_item(),
+						["<C-p>"] = cmp.mapping.select_prev_item(),
+						["<CR>"] = cmp.mapping.confirm({ select = true }), -- Enterで確定。select=trueは何も選択してなければ最初の候補を選ぶ
+						["<C-Space>"] = cmp.mapping.complete(), -- 手動で補完呼び出し
+					},
+					sources = {
+						{ name = "nvim_lsp" },
+						-- 必要なら他の補完ソースも追加可能
+					},
+				})
+			end,
+		},
 	})
 end
