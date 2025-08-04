@@ -7,7 +7,7 @@ require("setup")
 
 local has_minimum = os.getenv("NVIM_PLUGIN_MINIMUM") == "1"
 
-Setup = Setup()
+local Setup = SetupBuilder()
 local main_setup = Setup.new("MainSetup", require_plugins())
 local minimum_setup = Setup.new("MinimumSetup", require_minimum_plugins())
 

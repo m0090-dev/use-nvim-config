@@ -1,5 +1,5 @@
 -- セットアップクラス
-function Setup()
+function SetupBuilder()
 	local setup = {}
 	setup.__index = setup -- メタテーブルのインデックスを設定
 
