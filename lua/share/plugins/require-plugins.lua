@@ -120,29 +120,35 @@ function require_plugins()
 		},
 
 		{
-			"hrsh7th/nvim-cmp",
-			dependencies = {
-				"hrsh7th/cmp-nvim-lsp", -- LSPソース
-				"neovim/nvim-lspconfig", -- LSP設定（既に入れてる前提）
+	"hrsh7th/nvim-cmp",
+	dependencies = {
+		"hrsh7th/cmp-nvim-lsp", -- LSPソース
+		"neovim/nvim-lspconfig", -- LSP設定（既に入れてる前提）
+		"hrsh7th/cmp-path",      -- ★ パス補完
+	},
+	config = function()
+		local cmp = require("cmp")
+		cmp.setup({
+			mapping = {
+				["<Tab>"] = cmp.mapping.select_next_item(),
+				["<S-Tab>"] = cmp.mapping.select_prev_item(),
+				["<C-n>"] = cmp.mapping.select_next_item(),
+				["<C-p>"] = cmp.mapping.select_prev_item(),
+				["<CR>"] = cmp.mapping.confirm({ select = true }), -- Enterで確定
+				["<C-Space>"] = cmp.mapping.complete(), -- 手動で補完呼び出し
 			},
-			config = function()
-				local cmp = require("cmp")
-				cmp.setup({
+			sources = {
+				{ name = "nvim_lsp" },   -- 既存LSP補完
+				{ name = "path" },       -- ★ パス補完追加
+				-- 他の補完ソースもここに追加可能
+			},
+		})
+	end,
 
-					mapping = {
-						["<Tab>"] = cmp.mapping.select_next_item(),
-						["<S-Tab>"] = cmp.mapping.select_prev_item(),
-						["<C-n>"] = cmp.mapping.select_next_item(),
-						["<C-p>"] = cmp.mapping.select_prev_item(),
-						["<CR>"] = cmp.mapping.confirm({ select = true }), -- Enterで確定。select=trueは何も選択してなければ最初の候補を選ぶ
-						["<C-Space>"] = cmp.mapping.complete(), -- 手動で補完呼び出し
-					},
-					sources = {
-						{ name = "nvim_lsp" },
-						-- 必要なら他の補完ソースも追加可能
-					},
-				})
-			end,
 		},
+
+
+
+	
 	})
 end
