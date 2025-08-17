@@ -1,4 +1,6 @@
 function set_use_options()
+
+	vim.opt.fileencodings = { "ucs-bom", "utf-8", "cp932", "latin1" }
 	--vim.opt.shell = 'powershell.exe' -- windows向け
 	vim.opt.backup = false -- バックアップファイルを作成しない
 	vim.opt.writebackup = false -- 書き込み中にバックアップを作成しない

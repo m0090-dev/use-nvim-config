@@ -40,7 +40,9 @@ function set_key_maps()
         vim.api.nvim_set_keymap("n", ":", "<cmd>FineCmdline<CR>", { noremap = true })
 
         -- NERDCommenter
-        vim.api.nvim_set_keymap("n", "<leader>c", ":call NERDComment('n', 'toggle')<CR>", { noremap = true })
+        --vim.api.nvim_set_keymap("n", "<leader>c", ":call NERDComment('n', 'toggle')<CR>", { noremap = true })
+
+
     end
 
     -- ターミナルから抜けるキー

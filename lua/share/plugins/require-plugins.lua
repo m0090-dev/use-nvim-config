@@ -92,12 +92,12 @@ function require_plugins()
 				},
 			},
 		},
-		{
-			"RaafatTurki/hex.nvim",
-			config = function()
-				require("hex").setup()
-			end,
-		},
+	       --[[ {]]
+			--[["RaafatTurki/hex.nvim",]]
+			--[[config = function()]]
+				--[[require("hex").setup()]]
+			--[[end]]
+		--[[},]]
 		{
 			"mason-org/mason.nvim",
 			opts = {},
