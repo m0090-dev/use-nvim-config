@@ -37,7 +37,7 @@ function set_key_maps()
         vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true })
 
         -- コマンドライン補完（fine-cmdline）
-        vim.api.nvim_set_keymap("n", ":", "<cmd>FineCmdline<CR>", { noremap = true })
+        --vim.api.nvim_set_keymap("n", ":", "<cmd>FineCmdline<CR>", { noremap = true })
 
         -- NERDCommenter
         --vim.api.nvim_set_keymap("n", "<leader>c", ":call NERDComment('n', 'toggle')<CR>", { noremap = true })

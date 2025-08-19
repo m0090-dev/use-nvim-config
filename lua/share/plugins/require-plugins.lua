@@ -5,18 +5,8 @@ function require_minimum_plugins()
 			"terryma/vim-multiple-cursors",
 		},
 		{
-			event = "VimEnter",
+			  event = {'BufReadPost', 'BufNewFile'},
 			"romgrk/barbar.nvim",
-		},
-		{
-			event = "VimEnter",
-			"VonHeikemen/fine-cmdline.nvim",
-			dependencies = {
-				"MunifTanjim/nui.nvim",
-			},
-			config = function()
-				require("share/plugins/fine-cmdline").setup_fine_cmdline()
-			end,
 		},
 		{
 			event = "BufReadPost",
@@ -37,14 +27,14 @@ function require_minimum_plugins()
 			end,
 		},
 		{
-			event = "BufReadPost",
-			"nvim-lualine/lualine.nvim",
-			dependencies = {
-				"nvim-tree/nvim-web-devicons",
-			},
-			config = function()
-				require("share/plugins/lualine/lualine").setup_lualine()
-			end,
+		event = "BufReadPost",
+		"nvim-lualine/lualine.nvim",
+		dependencies = {
+		"nvim-tree/nvim-web-devicons",
+		},
+		config = function()
+		require("share/plugins/lualine").setup_lualine()
+		end,
 		},
 		{
 			"nvim-telescope/telescope.nvim",
@@ -60,15 +50,18 @@ function require_minimum_plugins()
 				require("share/plugins/comment").setup_comment()
 			end,
 		},
+		{
+			"Mofiqul/vscode.nvim",
+			config = function()
+				require("share/plugins/vscode").setup_vscode()
+			end
+		}
 	}
 end
 
 -- 通常設定
 function require_plugins()
 	return vim.list_extend(require_minimum_plugins(), {
-		{
-			"rcarriga/nvim-notify",
-		},
 		{
 			event = "CmdlineEnter",
 			"vim-scripts/ScrollColors",
@@ -92,15 +85,16 @@ function require_plugins()
 				},
 			},
 		},
-	       --[[ {]]
-			--[["RaafatTurki/hex.nvim",]]
-			--[[config = function()]]
-				--[[require("hex").setup()]]
-			--[[end]]
+		--[[ {]]
+		--[["RaafatTurki/hex.nvim",]]
+		--[[config = function()]]
+		--[[require("hex").setup()]]
+		--[[end]]
 		--[[},]]
 		{
 			"mason-org/mason.nvim",
 			opts = {},
+			cmd = "Mason",
 			config = function()
 				require("mason").setup()
 			end,
@@ -108,6 +102,7 @@ function require_plugins()
 
 		{
 			"neovim/nvim-lspconfig",
+			event = "BufReadPre",
 			config = function()
 				require("mason-lspconfig").setup({
 					ensure_installed = { "lua_ls", "gopls" }, -- 必要なLSPをリストアップ
@@ -120,35 +115,51 @@ function require_plugins()
 		},
 
 		{
-	"hrsh7th/nvim-cmp",
-	dependencies = {
-		"hrsh7th/cmp-nvim-lsp", -- LSPソース
-		"neovim/nvim-lspconfig", -- LSP設定（既に入れてる前提）
-		"hrsh7th/cmp-path",      -- ★ パス補完
-	},
-	config = function()
-		local cmp = require("cmp")
-		cmp.setup({
-			mapping = {
-				["<Tab>"] = cmp.mapping.select_next_item(),
-				["<S-Tab>"] = cmp.mapping.select_prev_item(),
-				["<C-n>"] = cmp.mapping.select_next_item(),
-				["<C-p>"] = cmp.mapping.select_prev_item(),
-				["<CR>"] = cmp.mapping.confirm({ select = true }), -- Enterで確定
-				["<C-Space>"] = cmp.mapping.complete(), -- 手動で補完呼び出し
+			"hrsh7th/nvim-cmp",
+			event = "InsertEnter",
+			dependencies = {
+				"hrsh7th/cmp-nvim-lsp", -- LSPソース
+				"neovim/nvim-lspconfig", -- LSP設定（既に入れてる前提）
+				"hrsh7th/cmp-path", -- ★ パス補完
 			},
-			sources = {
-				{ name = "nvim_lsp" },   -- 既存LSP補完
-				{ name = "path" },       -- ★ パス補完追加
-				-- 他の補完ソースもここに追加可能
-			},
-		})
-	end,
-
+			config = function()
+				local cmp = require("cmp")
+				cmp.setup({
+					mapping = {
+						["<Tab>"] = cmp.mapping.select_next_item(),
+						["<S-Tab>"] = cmp.mapping.select_prev_item(),
+						["<C-n>"] = cmp.mapping.select_next_item(),
+						["<C-p>"] = cmp.mapping.select_prev_item(),
+						["<CR>"] = cmp.mapping.confirm({ select = true }), -- Enterで確定
+						["<C-Space>"] = cmp.mapping.complete(), -- 手動で補完呼び出し
+					},
+					sources = {
+						{ name = "nvim_lsp" }, -- 既存LSP補完
+						{ name = "path" }, -- ★ パス補完追加
+						-- 他の補完ソースもここに追加可能
+					},
+				})
+			end,
 		},
 
-
-
-	
+		-- lazy.nvim
+		{
+			"folke/noice.nvim",
+			event = "VeryLazy",
+			opts = {
+				-- add any options here
+			},
+			dependencies = {
+				-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+				"MunifTanjim/nui.nvim",
+				-- OPTIONAL:
+				--   `nvim-notify` is only needed, if you want to use the notification view.
+				--   If not available, we use `mini` as the fallback
+				--"rcarriga/nvim-notify",
+			},
+			config = function()
+				require("share/plugins/noice").setup_noice()
+			end,
+		}, 
 	})
 end
