@@ -4,10 +4,16 @@ function require_minimum_plugins()
 		{
 			"terryma/vim-multiple-cursors",
 		},
-		{
-			  event = {'BufReadPost', 'BufNewFile'},
-			"romgrk/barbar.nvim",
-		},
+		
+
+{
+  "romgrk/barbar.nvim",
+  event = {"BufReadPost", "BufNewFile"},
+  cmd = { "BufferNext","BufferPrevious"},
+},
+
+
+
 		{
 			event = "BufReadPost",
 			"nvim-treesitter/nvim-treesitter",
