@@ -1,5 +1,5 @@
 function set_use_options()
-
+	vim.g.guifont = "Cica:h14"
 	vim.opt.fileencodings = { "ucs-bom", "utf-8", "cp932", "latin1" }
 	--vim.opt.shell = 'powershell.exe' -- windows向け
 	vim.opt.backup = false -- バックアップファイルを作成しない

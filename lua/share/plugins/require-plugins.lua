@@ -4,15 +4,12 @@ function require_minimum_plugins()
 		{
 			"terryma/vim-multiple-cursors",
 		},
-		
 
-{
-  "romgrk/barbar.nvim",
-  event = {"BufReadPost", "BufNewFile"},
-  cmd = { "BufferNext","BufferPrevious"},
-},
-
-
+		{
+			"romgrk/barbar.nvim",
+			event = { "BufReadPost", "BufNewFile" },
+			cmd = { "BufferNext", "BufferPrevious" },
+		},
 
 		{
 			event = "BufReadPost",
@@ -33,14 +30,14 @@ function require_minimum_plugins()
 			end,
 		},
 		{
-		event = "BufReadPost",
-		"nvim-lualine/lualine.nvim",
-		dependencies = {
-		"nvim-tree/nvim-web-devicons",
-		},
-		config = function()
-		require("share/plugins/lualine").setup_lualine()
-		end,
+			event = "BufReadPost",
+			"nvim-lualine/lualine.nvim",
+			dependencies = {
+				"nvim-tree/nvim-web-devicons",
+			},
+			config = function()
+				require("share/plugins/lualine").setup_lualine()
+			end,
 		},
 		{
 			"nvim-telescope/telescope.nvim",
@@ -58,10 +55,11 @@ function require_minimum_plugins()
 		},
 		{
 			"Mofiqul/vscode.nvim",
+			event = "VimEnter",
 			config = function()
 				require("share/plugins/vscode").setup_vscode()
-			end
-		}
+			end,
+		},
 	}
 end
 
@@ -166,6 +164,89 @@ function require_plugins()
 			config = function()
 				require("share/plugins/noice").setup_noice()
 			end,
-		}, 
+		},
+		{
+			"nvim-treesitter/nvim-treesitter-context",
+			event = { "BufNewFile", "BufReadPre" },
+
+			config = function()
+				require("treesitter-context").setup({
+					enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+					multiwindow = false, -- Enable multiwindow support.
+					max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+					min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+					line_numbers = true,
+					multiline_threshold = 20, -- Maximum number of lines to show for a single context
+					trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+					mode = "cursor", -- Line used to calculate context. Choices: 'cursor', 'topline'
+					-- Separator between context and content. Should be a single character string, like '-'.
+					-- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+					separator = nil,
+					zindex = 20, -- The Z-index of the context window
+					on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
+				})
+			end,
+		},
+		{
+			"kevinhwang91/nvim-ufo",
+
+			event = "VeryLazy",
+			dependencies = {
+				"kevinhwang91/promise-async",
+			},
+			config = function()
+				--require('ufo').setup({})
+
+				local ftMap = {
+					vim = "indent",
+					python = { "indent" },
+					git = "",
+				}
+				require("ufo").setup({
+					open_fold_hl_timeout = 150,
+					close_fold_kinds_for_ft = {
+						default = { "imports", "comment" },
+						json = { "array" },
+						c = { "comment", "region" },
+					},
+					close_fold_current_line_for_ft = {
+						default = true,
+						c = false,
+					},
+					preview = {
+						win_config = {
+							border = { "", "─", "", "", "", "─", "", "" },
+							winhighlight = "Normal:Folded",
+							winblend = 0,
+						},
+						mappings = {
+							scrollU = "<C-u>",
+							scrollD = "<C-d>",
+							jumpTop = "[",
+							jumpBot = "]",
+						},
+					},
+					provider_selector = function(bufnr, filetype, buftype)
+						-- if you prefer treesitter provider rather than lsp,
+						-- return ftMap[filetype] or {'treesitter', 'indent'}
+						return ftMap[filetype]
+
+						-- refer to ./doc/example.lua for detail
+					end,
+				})
+				vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+				vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+				vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
+				vim.keymap.set("n", "zm", require("ufo").closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
+				vim.keymap.set("n", "K", function()
+					local winid = require("ufo").peekFoldedLinesUnderCursor()
+					if not winid then
+						-- choose one of coc.nvim and nvim lsp
+						vim.fn.CocActionAsync("definitionHover") -- coc.nvim
+						vim.lsp.buf.hover()
+					end
+				end)
+			end,
+		},
 	})
 end
