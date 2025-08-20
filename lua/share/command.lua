@@ -1,9 +1,3 @@
-local function convert_backslash_to_slash(path)
-  if type(path) ~= "string" then
-    error("Invalid input: path must be a string", 2)
-  end
-  return path:gsub("\\", "/")
-end
 function set_commands()
 
 --print(vim.inspect(vim.loop.os_environ()))
@@ -15,11 +9,6 @@ vim.cmd("command! -nargs=0 InitRestart :luafile ~/.config/nvim/init.lua")
 vim.cmd("command! -nargs=0 WTerm :set shell=wsl.exe |:term")
 -- PowerShellをターミナルとして起動するコマンド
 vim.cmd("command! -nargs=0 PTerm :set shell=powershell.exe |:term")
-
-vim.cmd("command! -nargs=0 CustomTermC :set shell=" .. convert_backslash_to_slash(user_profile) .. "/Desktop/env_exec_cmd.bat |:term")
-vim.cmd("command! -nargs=0 CustomTermP :set shell=" .. convert_backslash_to_slash(user_profile) .. "/Desktop/env_exec_shell.bat |:term")
-
-
 
 
 

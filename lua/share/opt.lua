@@ -1,5 +1,7 @@
 function set_use_options()
-	vim.g.guifont = "Cica:h14"
+	if vim.fn.has('gui_running') == 1 then
+  		vim.o.guifont = "Cica:h14"
+	end
 	vim.opt.fileencodings = { "ucs-bom", "utf-8", "cp932", "latin1" }
 	--vim.opt.shell = 'powershell.exe' -- windows向け
 	vim.opt.backup = false -- バックアップファイルを作成しない
@@ -75,8 +77,6 @@ function set_use_options()
 
 	vim.api.nvim_set_var('loaded_netrw', 1)
 	vim.api.nvim_set_var('loaded_netrwPlugin', 1)
-
-	vim.opt.guifont = "GohuFont 11 Nerd Font Mono:h15"  -- setting gui font
 
 	vim.cmd("filetype plugin on")
 end
