@@ -34,4 +34,15 @@ endfunction
 vim.cmd("command! -nargs=0 DevCmd call StartDevCmd()")
 -- Visual Studio Developer Power Shellを起動するコマンド
 vim.cmd("command! -nargs=0 DevShell call StartDevShell()")
+
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function(data)
+    local is_dir = vim.fn.isdirectory(data.file) == 1
+    if is_dir then
+      vim.cmd("cd " .. data.file)
+      require("nvim-tree.api").tree.open()
+    end
+  end
+})
 end

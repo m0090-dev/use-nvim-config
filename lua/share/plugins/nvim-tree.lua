@@ -32,6 +32,6 @@ function M.setup_nvim_tree()
   on_attach = 'default'
 }
 vim.api.nvim_create_user_command('Ex', function() vim.cmd.NvimTreeToggle() end, {})
-	require("nvim-tree.api").tree.toggle(false, true)
+	--require("nvim-tree.api").tree.toggle(false, true)
 end
 return M
