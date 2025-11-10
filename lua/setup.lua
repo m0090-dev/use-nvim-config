@@ -8,14 +8,15 @@ function SetupBuilder()
 		local self = setmetatable({}, setup) -- 新しいインスタンスを生成
 		self.name = name
 		self.plugins = plugins
-		set_default_colorscheme()
-		set_use_options()
-		set_key_maps()
-		set_commands()
 		return self
 	end
 
 	function setup:build()
+		set_default_colorscheme()
+		set_use_options()
+		set_key_maps()
+		set_commands()
+
 		local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 		if not vim.loop.fs_stat(lazypath) then
 			vim.fn.system({
