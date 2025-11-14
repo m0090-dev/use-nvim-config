@@ -248,5 +248,19 @@ function require_plugins()
 				end)
 			end,
 		},
+
+
+		{
+  "MeanderingProgrammer/render-markdown.nvim",
+  dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+  opts = {},
+  config = function() 
+		require("share/plugins/render-markdown").setup_render_markdown()
+  end,
+  ft = { "markdown" },
+  keys = {
+    { "<Space>sm", ":RenderMarkdown toggle<CR>" },
+  },
+},
 	})
 end
