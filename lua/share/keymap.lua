@@ -41,7 +41,10 @@ function set_key_maps()
 
         -- NERDCommenter
         --vim.api.nvim_set_keymap("n", "<leader>c", ":call NERDComment('n', 'toggle')<CR>", { noremap = true })
-
+        
+        for i = 1, 10 do
+          vim.keymap.set("n", "<leader>" .. i, "<cmd>" .. i .. "ToggleTerm<cr>")
+        end
 
     end
 

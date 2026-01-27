@@ -60,6 +60,24 @@ function require_minimum_plugins()
 				require("share/plugins/vscode").setup_vscode()
 			end,
 		},
+		{
+  "akinsho/toggleterm.nvim",
+  version = "*",
+  config = function()
+    require("toggleterm").setup({
+      size = 15,
+      open_mapping = [[<c-\>]],
+      shade_terminals = true,
+      direction = "horizontal", -- horizontal | vertical | float | tab
+      start_in_insert = true,
+      persist_size = true,
+      close_on_exit = true,
+      shell = vim.o.shell,
+    })
+  end,
+}
+
+
 	}
 end
 
@@ -262,5 +280,6 @@ function require_plugins()
     { "<Space>sm", ":RenderMarkdown toggle<CR>" },
   },
 },
+
 	})
 end
