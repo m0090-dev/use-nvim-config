@@ -5,6 +5,10 @@ function M.setup_nvim_treesitter()
 		highlight = { 
 			enable = true,
 			disable = function(lang, buf)
+		local name = vim.api.nvim_buf_get_name(buf)
+		if name:match("node_modules") then
+    		    return true
+                end
                 local max_filesize = 1 * 1024 * 1024 
                 local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
                 if ok and stats and stats.size > max_filesize then

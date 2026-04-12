@@ -39,14 +39,14 @@ function require_minimum_plugins()
 				require("share/plugins/lualine").setup_lualine()
 			end,
 		},
-		{
-			"nvim-telescope/telescope.nvim",
-			dependencies = { "nvim-lua/plenary.nvim" },
-			event = "VimEnter",
-			config = function()
-				require("telescope").setup({})
-			end,
-		},
+       --[[         {]]
+			--[["nvim-telescope/telescope.nvim",]]
+			--[[dependencies = { "nvim-lua/plenary.nvim" },]]
+			--[[event = "VimEnter",]]
+			--[[config = function()]]
+				--[[require("telescope").setup({})]]
+			--[[end,]]
+		--[[},]]
 		{
 			"preservim/nerdcommenter",
 			config = function()
