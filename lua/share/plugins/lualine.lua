@@ -2,6 +2,8 @@
 local M = {}
 
 function M.setup_lualine()
+	local git_available = vim.fn.executable('git') == 1
+
 	-- 現在の日付と時間を取得するカスタム関数
 	local function current_datetime()
 		return os.date("%Y-%m-%d %H:%M:%S") -- フォーマット例: 2025-01-27 14:35:20
@@ -28,7 +30,7 @@ function M.setup_lualine()
 		},
 		sections = {
 			lualine_a = { "mode" },
-			lualine_b = { "branch", "diff", "diagnostics" },
+			lualine_b = git_available and { "branch", "diff", "diagnostics" } or { "diagnostics" },
 			lualine_c = { "filename" },
 			lualine_x = { "encoding", "fileformat", "filetype", current_datetime }, -- カスタム関数を追加
 			lualine_y = { "progress" },
