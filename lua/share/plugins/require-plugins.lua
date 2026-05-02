@@ -39,13 +39,13 @@ function require_minimum_plugins()
 				require("share/plugins/lualine").setup_lualine()
 			end,
 		},
-       --[[         {]]
-			--[["nvim-telescope/telescope.nvim",]]
-			--[[dependencies = { "nvim-lua/plenary.nvim" },]]
-			--[[event = "VimEnter",]]
-			--[[config = function()]]
-				--[[require("telescope").setup({})]]
-			--[[end,]]
+		--[[         {]]
+		--[["nvim-telescope/telescope.nvim",]]
+		--[[dependencies = { "nvim-lua/plenary.nvim" },]]
+		--[[event = "VimEnter",]]
+		--[[config = function()]]
+		--[[require("telescope").setup({})]]
+		--[[end,]]
 		--[[},]]
 		{
 			"preservim/nerdcommenter",
@@ -61,23 +61,21 @@ function require_minimum_plugins()
 			end,
 		},
 		{
-  "akinsho/toggleterm.nvim",
-  version = "*",
-  config = function()
-    require("toggleterm").setup({
-      size = 15,
-      open_mapping = [[<c-\>]],
-      shade_terminals = true,
-      direction = "horizontal", -- horizontal | vertical | float | tab
-      start_in_insert = true,
-      persist_size = true,
-      close_on_exit = true,
-      shell = vim.o.shell,
-    })
-  end,
-}
-
-
+			"akinsho/toggleterm.nvim",
+			version = "*",
+			config = function()
+				require("toggleterm").setup({
+					size = 15,
+					open_mapping = [[<c-\>]],
+					shade_terminals = true,
+					direction = "horizontal", -- horizontal | vertical | float | tab
+					start_in_insert = true,
+					persist_size = true,
+					close_on_exit = true,
+					shell = vim.o.shell,
+				})
+			end,
+		},
 	}
 end
 
@@ -177,18 +175,17 @@ function require_plugins()
 				require("share/plugins/noice").setup_noice()
 			end,
 		},
-			{
-  "MeanderingProgrammer/render-markdown.nvim",
-  dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
-  opts = {},
-  config = function() 
-		require("share/plugins/render-markdown").setup_render_markdown()
-  end,
-  ft = { "markdown" },
-  keys = {
-    { "<Space>sm", ":RenderMarkdown toggle<CR>" },
-  },
-},
-
+		{
+			"MeanderingProgrammer/render-markdown.nvim",
+			dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+			opts = {},
+			config = function()
+				require("share/plugins/render-markdown").setup_render_markdown()
+			end,
+			ft = { "markdown" },
+			keys = {
+				{ "<Space>sm", ":RenderMarkdown toggle<CR>" },
+			},
+		},
 	})
 end

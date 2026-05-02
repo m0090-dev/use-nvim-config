@@ -1,6 +1,3 @@
 local M = {}
-function M.setup_comment()
-
-
-end
+function M.setup_comment() end
 return M

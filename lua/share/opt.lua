@@ -1,6 +1,6 @@
 function set_use_options()
-	if vim.fn.has('gui_running') == 1 then
-  		vim.o.guifont = "Cica:h14"
+	if vim.fn.has("gui_running") == 1 then
+		vim.o.guifont = "Cica:h14"
 	end
 	vim.opt.fileencodings = { "ucs-bom", "utf-8", "cp932", "latin1" }
 	--vim.opt.shell = 'powershell.exe' -- windows向け
@@ -75,8 +75,8 @@ function set_use_options()
 	-- NOTE: You should make sure your terminal supports this
 	vim.o.termguicolors = true
 
-	vim.api.nvim_set_var('loaded_netrw', 1)
-	vim.api.nvim_set_var('loaded_netrwPlugin', 1)
+	vim.api.nvim_set_var("loaded_netrw", 1)
+	vim.api.nvim_set_var("loaded_netrwPlugin", 1)
 
 	vim.cmd("filetype plugin on")
 end
