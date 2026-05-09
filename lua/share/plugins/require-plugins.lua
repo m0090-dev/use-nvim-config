@@ -65,7 +65,7 @@ end
 -- 通常設定
 function require_plugins()
 	return vim.list_extend(require_minimum_plugins(), {
-	{
+		{
 			event = "BufReadPost",
 			"nvim-treesitter/nvim-treesitter",
 			build = ":TSUpdate",
@@ -157,13 +157,13 @@ function require_plugins()
 						smart_history = true,
 						prompt = ": ",
 					},
-    hooks = {
-    set_keymaps = function(imap, feedkeys)
-        local fn = require("fine-cmdline").fn
-        imap("<Esc>", fn.close)
-        imap("<C-c>", fn.close)
-    end,
-},
+					hooks = {
+						set_keymaps = function(imap, feedkeys)
+							local fn = require("fine-cmdline").fn
+							imap("<Esc>", fn.close)
+							imap("<C-c>", fn.close)
+						end,
+					},
 					popup = {
 						position = {
 							row = "40%", -- ←中央っぽく見える調整値
