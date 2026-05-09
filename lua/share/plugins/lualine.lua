@@ -2,7 +2,7 @@
 local M = {}
 
 function M.setup_lualine()
-	local git_available = vim.fn.executable('git') == 1
+	local git_available = vim.fn.executable("git") == 1
 
 	-- 現在の日付と時間を取得するカスタム関数
 	local function current_datetime()

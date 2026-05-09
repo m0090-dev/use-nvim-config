@@ -10,15 +10,6 @@ function require_minimum_plugins()
 			event = { "BufReadPost", "BufNewFile" },
 			cmd = { "BufferNext", "BufferPrevious" },
 		},
-
-		{
-			event = "BufReadPost",
-			"nvim-treesitter/nvim-treesitter",
-			build = ":TSUpdate",
-			config = function()
-				require("share/plugins/nvim-treesitter").setup_nvim_treesitter()
-			end,
-		},
 		{
 			event = "VimEnter",
 			"nvim-tree/nvim-tree.lua",
@@ -39,14 +30,6 @@ function require_minimum_plugins()
 				require("share/plugins/lualine").setup_lualine()
 			end,
 		},
-		--[[         {]]
-		--[["nvim-telescope/telescope.nvim",]]
-		--[[dependencies = { "nvim-lua/plenary.nvim" },]]
-		--[[event = "VimEnter",]]
-		--[[config = function()]]
-		--[[require("telescope").setup({})]]
-		--[[end,]]
-		--[[},]]
 		{
 			"preservim/nerdcommenter",
 			config = function()
@@ -82,6 +65,15 @@ end
 -- 通常設定
 function require_plugins()
 	return vim.list_extend(require_minimum_plugins(), {
+	{
+			event = "BufReadPost",
+			"nvim-treesitter/nvim-treesitter",
+			build = ":TSUpdate",
+			config = function()
+				require("share/plugins/nvim-treesitter").setup_nvim_treesitter()
+			end,
+		},
+
 		{
 			event = "CmdlineEnter",
 			"vim-scripts/ScrollColors",
@@ -155,24 +147,39 @@ function require_plugins()
 				})
 			end,
 		},
-
-		-- lazy.nvim
 		{
-			"folke/noice.nvim",
-			event = "VeryLazy",
-			opts = {
-				-- add any options here
-			},
-			dependencies = {
-				-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-				"MunifTanjim/nui.nvim",
-				-- OPTIONAL:
-				--   `nvim-notify` is only needed, if you want to use the notification view.
-				--   If not available, we use `mini` as the fallback
-				--"rcarriga/nvim-notify",
-			},
+			"VonHeikemen/fine-cmdline.nvim",
+			dependencies = { "MunifTanjim/nui.nvim" },
 			config = function()
-				require("share/plugins/noice").setup_noice()
+				require("fine-cmdline").setup({
+					cmdline = {
+						enable_keymaps = false,
+						smart_history = true,
+						prompt = ": ",
+					},
+    hooks = {
+    set_keymaps = function(imap, feedkeys)
+        local fn = require("fine-cmdline").fn
+        imap("<Esc>", fn.close)
+        imap("<C-c>", fn.close)
+    end,
+},
+					popup = {
+						position = {
+							row = "40%", -- ←中央っぽく見える調整値
+							col = "50%",
+						},
+						size = {
+							width = "60%",
+						},
+						border = {
+							style = "rounded",
+						},
+						win_options = {
+							winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+						},
+					},
+				})
 			end,
 		},
 		{
